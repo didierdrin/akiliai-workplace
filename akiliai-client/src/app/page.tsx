@@ -120,7 +120,7 @@ export default function Home() {
                 <button className="text-emerald-700 font-semibold hover:text-emerald-800 transition-colors">
                   View All
                 </button>
-              </div>
+          </div>
             </div>
 
             {/* Loading State */}
@@ -195,7 +195,7 @@ export default function Home() {
                       size="small"
                     />
                   ))}
-                </div>
+            </div>
               </section>
             </div>
           </div>
@@ -237,7 +237,7 @@ export default function Home() {
                   By Environmental Research Group • 4 min read
                 </div>
               </div>
-            </div>
+          </div>
           </div>
         </section>
       </main>
