@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
-import ArticleCard from '@/components/ArticleCard';
 import Sidebar from '@/components/Sidebar';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useArticles, trackPageView } from '../hooks/useFirebase';
+import ArticleCard from '@/components/ArticleCard';
 
 export default function Home() {
   const { articles: featuredArticles, loading, error } = useArticles({ 
@@ -114,7 +114,7 @@ export default function Home() {
             {/* Section Header */}
             <div className="flex items-center justify-between border-b border-emerald-200 pb-4">
               <h2 className="font-display text-2xl font-bold text-gray-900">
-                Today's Top Stories
+                Today&apos;s Top Stories
               </h2>
               <div className="flex space-x-4">
                 <button className="text-emerald-700 font-semibold hover:text-emerald-800 transition-colors">
@@ -228,7 +228,7 @@ export default function Home() {
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <span className="text-xs font-semibold text-blue-700 uppercase tracking-wide">Analysis</span>
                 <h4 className="font-display text-lg font-bold mt-2 mb-3 text-gray-900">
-                  Technology's Role in Climate Solutions
+                  Technology&apos;s Role in Climate Solutions
                 </h4>
                 <p className="font-reading text-gray-600 text-sm mb-4">
                   Examining how emerging technologies are being leveraged to address climate change and create sustainable solutions...

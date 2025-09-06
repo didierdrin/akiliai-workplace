@@ -8,12 +8,10 @@ import {
   getDoc, 
   addDoc, 
   updateDoc, 
-  deleteDoc, 
   query, 
   orderBy, 
   limit, 
-  where, 
-  onSnapshot,
+  where,   
   increment,
   Timestamp
 } from 'firebase/firestore';
@@ -249,14 +247,14 @@ export const searchArticles = async (searchQuery: string, category?: string) => 
 };
 
 // Function to get popular articles
-export const getPopularArticles = async (limit: number = 10) => {
+export const getPopularArticles = async (limitCount: number = 10) => {
   try {
     const articlesRef = collection(firestore, 'articles');
     const q = query(
       articlesRef,
       where('status', '==', 'published'),
       orderBy('viewCount', 'desc'),
-      limit(limit)
+      limit(limitCount)
     );
     
     const snapshot = await getDocs(q);
@@ -277,14 +275,14 @@ export const getPopularArticles = async (limit: number = 10) => {
 };
 
 // Function to get latest articles
-export const getLatestArticles = async (limit: number = 10) => {
+export const getLatestArticles = async (limitCount: number = 10) => {
   try {
     const articlesRef = collection(firestore, 'articles');
     const q = query(
       articlesRef,
       where('status', '==', 'published'),
       orderBy('publishDate', 'desc'),
-      limit(limit)
+      limit(limitCount)
     );
     
     const snapshot = await getDocs(q);

@@ -1,4 +1,3 @@
-import { Timestamp } from 'firebase/firestore';
 import { Article, Category } from '../hooks/useFirebase';
 
 // Sample articles for development/testing
