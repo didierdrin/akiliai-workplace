@@ -1,0 +1,260 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Emerald Admin Theme Colors */
+  --emerald-50: #ecfdf5;
+  --emerald-100: #d1fae5;
+  --emerald-200: #a7f3d0;
+  --emerald-300: #6ee7b7;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-700: #047857;
+  --emerald-800: #065f46;
+  --emerald-900: #064e3b;
+  --emerald-950: #022c22;
+  
+  /* Admin-specific gradients */
+  --gradient-emerald-admin: linear-gradient(135deg, #047857 0%, #065f46 50%, #064e3b 100%);
+  --gradient-emerald-sidebar: linear-gradient(180deg, #047857 0%, #065f46 100%);
+  --gradient-emerald-card: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  --gradient-emerald-accent: linear-gradient(90deg, #ecfdf5 0%, #d1fae5 100%);
+  
+  /* Admin UI Colors */
+  --admin-bg: #f8fafc;
+  --admin-sidebar-bg: var(--gradient-emerald-sidebar);
+  --admin-card-bg: #ffffff;
+  --admin-border: #e2e8f0;
+  --admin-text-primary: #1e293b;
+  --admin-text-secondary: #64748b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-mono: var(--font-roboto);
+}
+
+/* Base Styles */
+body {
+  background: var(--admin-bg);
+  color: var(--admin-text-primary);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* Admin-specific typography */
+.font-display {
+  font-family: var(--font-playfair), serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.font-body {
+  font-family: var(--font-roboto), sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Admin gradient utilities */
+.gradient-emerald-admin {
+  background: var(--gradient-emerald-admin);
+}
+
+.gradient-emerald-sidebar {
+  background: var(--gradient-emerald-sidebar);
+}
+
+.gradient-emerald-card {
+  background: var(--gradient-emerald-card);
+}
+
+.gradient-emerald-accent {
+  background: var(--gradient-emerald-accent);
+}
+
+/* Admin card styles */
+.admin-card {
+  background: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Angular design elements for admin */
+.angular-clip-admin {
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 100%, 15px 100%);
+}
+
+.angular-clip-admin-reverse {
+  clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+}
+
+/* Sidebar styles */
+.sidebar-nav-item {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar-nav-item:hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #ffffff;
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar-nav-item.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #ffffff;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Admin form styles */
+.admin-input {
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  transition: border-color 0.2s ease-in-out;
+  background: #ffffff;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #047857;
+  ring: 2px;
+  ring-color: rgba(4, 120, 87, 0.2);
+}
+
+.admin-button-primary {
+  background: var(--gradient-emerald-admin);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.admin-button-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+}
+
+/* Chart container styles */
+.chart-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--admin-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Rich text editor styles */
+.ql-toolbar {
+  border-top: 1px solid var(--admin-border) !important;
+  border-left: 1px solid var(--admin-border) !important;
+  border-right: 1px solid var(--admin-border) !important;
+  border-bottom: none !important;
+  border-radius: 8px 8px 0 0 !important;
+  background: #f8fafc !important;
+}
+
+.ql-container {
+  border-bottom: 1px solid var(--admin-border) !important;
+  border-left: 1px solid var(--admin-border) !important;
+  border-right: 1px solid var(--admin-border) !important;
+  border-top: none !important;
+  border-radius: 0 0 8px 8px !important;
+  font-family: var(--font-roboto), sans-serif !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animation utilities */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Status indicators */
+.status-published {
+  background: #10b981;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-draft {
+  background: #f59e0b;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-scheduled {
+  background: #3b82f6;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
