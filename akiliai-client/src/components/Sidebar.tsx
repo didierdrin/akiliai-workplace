@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { TrendingUp, Clock, Eye, Calendar } from 'lucide-react';
-import ArticleCard from './ArticleCard';
 
 interface SidebarArticle {
   id: string;
@@ -110,7 +109,7 @@ const Sidebar = () => {
         </div>
 
         <div className="p-4 space-y-4">
-          {(activeTab === 'latest' ? latestArticles : popularArticles).map((article, index) => (
+          {(activeTab === 'latest' ? latestArticles : popularArticles).map((article) => (
             <div key={article.id} className="flex items-start space-x-3 group cursor-pointer">
               <div className="flex-shrink-0 w-3 h-3 bg-emerald-600 rounded-full mt-2 group-hover:bg-emerald-700 transition-colors"></div>
               <div className="flex-1 min-w-0">
@@ -158,7 +157,7 @@ const Sidebar = () => {
       <div className="gradient-emerald-subtle rounded-lg p-6 text-gray-800">
         <h3 className="font-display text-lg font-bold mb-4 flex items-center">
           <Calendar className="mr-2 text-emerald-700" size={20} />
-          Today's Brief
+          Today&apos;s Brief
         </h3>
         <div className="space-y-4">
           <div className="flex justify-between items-center">

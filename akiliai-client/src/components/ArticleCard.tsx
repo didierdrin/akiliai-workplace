@@ -1,5 +1,4 @@
 'use client';
-
 import { Clock, User, Eye, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
