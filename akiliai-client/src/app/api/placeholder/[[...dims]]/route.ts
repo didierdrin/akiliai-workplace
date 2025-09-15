@@ -7,8 +7,9 @@ function parseDims(params: { dims?: string[] }) {
   return { width, height };
 }
 
-export async function GET(_req: NextRequest, { params }: { params: { dims?: string[] } }) {
-  const { width, height } = parseDims(params);
+export async function GET(_req: NextRequest, context: any) {
+  const { params } = context || {};
+  const { width, height } = parseDims(params || {});
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <defs>
