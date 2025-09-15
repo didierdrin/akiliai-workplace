@@ -115,7 +115,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         createdAt: new Date(),
         isActive: true,
         displayName: userData.displayName || email.split('@')[0],
-        createdBy: currentUser?.uid
+        createdBy: currentUser?.uid || result.user.uid // Use self as creator if no current user
       });
 
       toast.success('User created successfully!');
