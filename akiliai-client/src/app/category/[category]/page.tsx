@@ -28,7 +28,7 @@ export default function CategoryPage() {
         {!loading && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {articles.map((a) => (
-              <ArticleCard key={a.id} id={a.id} {...a} size="small" />
+              <ArticleCard key={a.id} {...a} size="small" />
             ))}
           </div>
         )}
