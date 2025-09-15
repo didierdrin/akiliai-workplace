@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 
@@ -19,7 +19,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
   placeholder = "Start writing your article...",
   readOnly = false
 }) => {
-  const quillRef = useRef<any>(null);
+  
 
   const modules = {
     toolbar: [
@@ -55,7 +55,6 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
   return (
     <div className="rich-text-editor">
       <ReactQuill
-        ref={quillRef}
         theme="snow"
         value={value}
         onChange={onChange}
