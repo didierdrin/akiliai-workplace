@@ -12,7 +12,34 @@ import {
   Download
 } from 'lucide-react';
 import DashboardLayout from '../../../components/DashboardLayout';
-import { Line, Bar, Doughnut, Polar } from 'react-chartjs-2';
+import { Line, Bar, Doughnut, PolarArea } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  RadialLinearScale,
+  Filler,
+  Tooltip,
+  Legend,
+  Title,
+} from 'chart.js';
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
+  RadialLinearScale,
+  Filler,
+  Tooltip,
+  Legend,
+  Title,
+);
 import { useAnalytics } from '../../../hooks/useFirebaseAdmin';
 
 const AnalyticsPage = () => {
@@ -251,7 +278,7 @@ const AnalyticsPage = () => {
         <div className="admin-card p-6">
           <h3 className="font-semibold text-gray-900 mb-6">Device Types</h3>
           <div className="h-64 flex items-center justify-center">
-            <Polar data={deviceTypeData} />
+            <PolarArea data={deviceTypeData} />
           </div>
         </div>
       </div>
