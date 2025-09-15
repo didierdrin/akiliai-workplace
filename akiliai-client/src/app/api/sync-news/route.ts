@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { firestore } from '../../../../lib/firebase';
-import { collection, addDoc, getDocs, query, where, serverTimestamp } from 'firebase/firestore';
 
 // Optional: Gemini classification using Google Generative AI
 let googleClient: any = null;
@@ -59,6 +57,9 @@ async function fetchRapidNews(payload: any) {
 
 export async function POST(req: NextRequest) {
   try {
+    // Lazy-load Firebase only for POST to avoid import side-effects on GET
+    const { firestore } = await import('../../../../lib/firebase');
+    const { collection, addDoc, getDocs, query, where, serverTimestamp } = await import('firebase/firestore');
     const body = await req.json().catch(() => ({}));
     const { location = 'us', language = 'en', page = 1, query: searchQuery, from_date, to_date } = body || {};
 
@@ -127,5 +128,8 @@ export async function GET() {
   // No-op on GET to avoid failures during initial page load
   return NextResponse.json({ status: 'ok' });
 }
+// Ensure Node.js runtime (not Edge) for compatibility with Firebase SDK and external fetch
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 

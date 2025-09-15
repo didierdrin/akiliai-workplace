@@ -170,7 +170,7 @@ const Header = ({ onCategoryChange }: HeaderProps) => {
                     {category.subcategories.map((subcategory) => (
                       <Link
                         key={subcategory}
-                        href={`/category/${category.name.toLowerCase()}/${subcategory.toLowerCase().replace(/\s+/g, '-')}`}
+                        href={`/category/${encodeURIComponent(subcategory.toLowerCase())}`}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
                       >
                         {subcategory}
@@ -207,7 +207,7 @@ const Header = ({ onCategoryChange }: HeaderProps) => {
                       {category.subcategories.map((subcategory) => (
                         <Link
                           key={subcategory}
-                          href={`/category/${category.name.toLowerCase()}/${subcategory.toLowerCase().replace(/\s+/g, '-')}`}
+                          href={`/category/${encodeURIComponent(subcategory.toLowerCase())}`}
                           className="block py-1 text-sm text-gray-600 hover:text-emerald-600"
                         >
                           {subcategory}

@@ -67,6 +67,7 @@ const ArticleCard = ({
             src={imageUrl || '/api/placeholder/600/400'}
             alt={title}
             fill
+            unoptimized
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
           {/* Category Badge */}
