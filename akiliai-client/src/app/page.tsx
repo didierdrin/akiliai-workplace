@@ -43,7 +43,6 @@ export default function Home() {
   // Fallback data in case Firebase is empty
   const fallbackArticles = [
     {
-      id: '8',
       title: 'Federal Reserve Announces New Interest Rate Policy',
       excerpt: 'The Federal Reserve has announced significant changes to its interest rate policy, signaling a shift in monetary approach for the coming year. Market analysts predict substantial impacts across various sectors.',
       author: 'Jennifer Martinez',
@@ -54,7 +53,6 @@ export default function Home() {
       viewCount: 14200
     },
     {
-      id: '9',
       title: 'Breakthrough in Quantum Computing Achieved',
       excerpt: 'Scientists have successfully demonstrated a new quantum computing architecture that could solve complex problems exponentially faster than traditional computers.',
       author: 'Dr. Steven Chang',
@@ -65,7 +63,6 @@ export default function Home() {
       viewCount: 9800
     },
     {
-      id: '10',
       title: 'Historic Peace Agreement Signed in International Summit',
       excerpt: 'World leaders have signed a landmark peace agreement addressing long-standing regional conflicts, marking a new chapter in international diplomacy.',
       author: 'Maria Gonzalez',
@@ -76,7 +73,6 @@ export default function Home() {
       viewCount: 16700
     },
     {
-      id: '11',
       title: 'Revolutionary Cancer Treatment Shows Remarkable Results',
       excerpt: 'A new immunotherapy treatment has shown unprecedented success rates in clinical trials, offering hope to millions of cancer patients worldwide.',
       author: 'Dr. Rachel Adams',
@@ -87,7 +83,6 @@ export default function Home() {
       viewCount: 12500
     },
     {
-      id: '12',
       title: 'Sustainable Energy Initiative Receives Global Support',
       excerpt: 'A comprehensive sustainable energy initiative has gained unprecedented support from governments and corporations worldwide, promising to accelerate the transition to renewable energy.',
       author: 'Thomas Anderson',
@@ -98,7 +93,6 @@ export default function Home() {
       viewCount: 11300
     },
     {
-      id: '13',
       title: 'Olympic Preparations Showcase Technological Innovation',
       excerpt: 'The upcoming Olympics will feature cutting-edge technology and sustainable practices, setting new standards for international sporting events.',
       author: 'Lisa Thompson',
@@ -155,9 +149,9 @@ export default function Home() {
             {/* Featured Articles Grid */}
             {!loading && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {displayArticles.slice(0, 6).map((article) => (
+                {displayArticles.slice(0, 6).map((article, index) => (
                   <ArticleCard
-                    key={article.id}
+                    key={(article as any)?.id ?? (article as any)?.title ?? index}
                     {...article}
                     size="medium"
                     className="hover:shadow-xl"
@@ -180,9 +174,9 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {displayArticles.filter(article => article.category === 'Finance').slice(0, 3).map((article) => (
+                  {displayArticles.filter(article => article.category === 'Finance').slice(0, 3).map((article, index) => (
                     <ArticleCard
-                      key={article.id}
+                      key={(article as any)?.id ?? (article as any)?.title ?? index}
                       {...article}
                       size="small"
                     />
@@ -202,9 +196,9 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {displayArticles.filter(article => article.category === 'Tech').slice(0, 3).map((article) => (
+                  {displayArticles.filter(article => article.category === 'Tech').slice(0, 3).map((article, index) => (
                     <ArticleCard
-                      key={article.id}
+                      key={(article as any)?.id ?? (article as any)?.title ?? index}
                       {...article}
                       size="small"
                     />
