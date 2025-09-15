@@ -191,7 +191,7 @@ const CategoriesPage = () => {
     });
 
     return (
-      <tr ref={(node) => drag(drop(node))} className="hover:bg-gray-50 cursor-move">
+      <tr ref={(node) => { if (node) { drag(drop(node)); } }} className="hover:bg-gray-50 cursor-move">
         <td className="px-6 py-4">
           <div className="flex items-center">
             <GripVertical size={16} className="text-gray-400 mr-3" />
