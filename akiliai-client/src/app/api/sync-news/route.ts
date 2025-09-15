@@ -124,8 +124,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  // Convenience: trigger a default sync via GET
-  return POST(new NextRequest(''));
+  // No-op on GET to avoid failures during initial page load
+  return NextResponse.json({ status: 'ok' });
 }
 
 
