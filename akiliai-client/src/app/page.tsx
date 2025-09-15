@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
@@ -10,9 +10,11 @@ import { useArticles, trackPageView } from '../hooks/useFirebase';
 import ArticleCard from '@/components/ArticleCard';
 
 export default function Home() {
+  const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
   const { articles: featuredArticles, loading, error } = useArticles({ 
     limit: 12,
-    orderBy: 'publishDate'
+    orderBy: 'publishDate',
+    category: activeCategory
   });
 
   // Track page view
@@ -24,6 +26,18 @@ export default function Home() {
         document.referrer
       );
     }
+  }, []);
+
+  // Trigger news sync once on first mount
+  useEffect(() => {
+    const sync = async () => {
+      try {
+        await fetch('/api/sync-news', { method: 'GET' });
+      } catch (e) {
+        console.error('News sync failed', e);
+      }
+    };
+    sync();
   }, []);
 
   // Fallback data in case Firebase is empty
@@ -101,7 +115,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Header onCategoryChange={(cat?: string) => setActiveCategory(cat)} />
       
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -114,7 +128,7 @@ export default function Home() {
             {/* Section Header */}
             <div className="flex items-center justify-between border-b border-emerald-200 pb-4">
               <h2 className="font-display text-2xl font-bold text-gray-900">
-                Today&apos;s Top Stories
+                {activeCategory ? `${activeCategory} News` : `Today\'s Top Stories`}
               </h2>
               <div className="flex space-x-4">
                 <button className="text-emerald-700 font-semibold hover:text-emerald-800 transition-colors">

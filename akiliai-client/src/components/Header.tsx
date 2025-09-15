@@ -2,6 +2,11 @@
 
 import { useState } from 'react';
 import { ChevronDown, Search, Menu, X, User, Bell } from 'lucide-react';
+import Link from 'next/link';
+
+type HeaderProps = {
+  onCategoryChange?: (category?: string) => void;
+};
 
 const categories = [
   {
@@ -50,7 +55,7 @@ const categories = [
   }
 ];
 
-const Header = () => {
+const Header = ({ onCategoryChange }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -58,7 +63,7 @@ const Header = () => {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       {/* Breaking News Ticker */}
-      <div className="bg-emerald-700 text-white px-4 py-1 text-sm">
+      <div className="bg-blue-700 text-white px-4 py-1 text-sm">
         <div className="flex items-center max-w-7xl mx-auto">
           <span className="font-semibold mr-4 text-emerald-100">BREAKING:</span>
           <div className="flex-1 overflow-hidden">
@@ -82,12 +87,12 @@ const Header = () => {
             })}
           </div>
           <div className="flex items-center space-x-4">
-            <button className="text-gray-600 hover:text-emerald-700 transition-colors">
+            {/* <button className="text-gray-600 hover:text-emerald-700 transition-colors">
               <Bell size={16} />
             </button>
             <button className="text-gray-600 hover:text-emerald-700 transition-colors">
               <User size={16} />
-            </button>
+            </button> */}
             <button className="text-emerald-700 hover:text-emerald-800 font-medium">
               Subscribe
             </button>
@@ -106,12 +111,13 @@ const Header = () => {
 
           {/* Logo */}
           <div className="flex-1 lg:flex-none text-center lg:text-left">
-            <h1 className="font-display text-4xl lg:text-5xl font-bold text-gradient">
-              Akiliai
-            </h1>
-            <p className="text-sm text-gray-600 font-medium tracking-wide">
-              PREMIUM NEWS & ANALYSIS
-            </p>
+            <button
+              onClick={() => onCategoryChange && onCategoryChange(undefined)}
+              className="text-left"
+            >
+              <h1 className="font-display text-4xl lg:text-5xl font-bold text-gradient">Akiliai</h1>
+              <p className="text-sm text-gray-600 font-medium tracking-wide">PREMIUM NEWS & ANALYSIS</p>
+            </button>
           </div>
 
           {/* Search */}
@@ -146,6 +152,7 @@ const Header = () => {
                   className="flex items-center space-x-1 py-2 text-sm font-medium text-gray-700 hover:text-emerald-700 transition-colors"
                   onMouseEnter={() => setActiveDropdown(category.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
+                  onClick={() => onCategoryChange && onCategoryChange(category.name)}
                 >
                   <span>{category.name}</span>
                   {category.subcategories.length > 0 && (
@@ -161,13 +168,13 @@ const Header = () => {
                     onMouseLeave={() => setActiveDropdown(null)}
                   >
                     {category.subcategories.map((subcategory) => (
-                      <a
+                      <Link
                         key={subcategory}
                         href={`/category/${category.name.toLowerCase()}/${subcategory.toLowerCase().replace(/\s+/g, '-')}`}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
                       >
                         {subcategory}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -189,22 +196,22 @@ const Header = () => {
             <div className="space-y-2">
               {categories.map((category) => (
                 <div key={category.name}>
-                  <a
-                    href={`/category/${category.name.toLowerCase()}`}
-                    className="block py-2 text-gray-700 hover:text-emerald-700 font-medium"
+                  <button
+                    onClick={() => onCategoryChange && onCategoryChange(category.name)}
+                    className="block py-2 text-gray-700 hover:text-emerald-700 font-medium text-left w-full"
                   >
                     {category.name}
-                  </a>
+                  </button>
                   {category.subcategories.length > 0 && (
                     <div className="ml-4 space-y-1">
                       {category.subcategories.map((subcategory) => (
-                        <a
+                        <Link
                           key={subcategory}
                           href={`/category/${category.name.toLowerCase()}/${subcategory.toLowerCase().replace(/\s+/g, '-')}`}
                           className="block py-1 text-sm text-gray-600 hover:text-emerald-600"
                         >
                           {subcategory}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}

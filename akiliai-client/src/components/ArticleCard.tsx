@@ -1,8 +1,10 @@
 'use client';
 import { Clock, User, Eye, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ArticleCardProps {
+  id?: string;
   title: string;
   excerpt: string;
   author: string;
@@ -16,6 +18,7 @@ interface ArticleCardProps {
 }
 
 const ArticleCard = ({
+  id,
   title,
   excerpt,
   author,
@@ -56,8 +59,7 @@ const ArticleCard = ({
 
   const styles = sizeClasses[size];
 
-  return (
-    <article className={`group cursor-pointer transition-all-smooth hover:shadow-lg bg-white border border-gray-100 rounded-lg overflow-hidden ${className}`}>
+  const content = (
       <div className={styles.container}>
         {/* Image */}
         <div className={`relative ${styles.image} mb-4 overflow-hidden rounded-md bg-gray-200`}>
@@ -124,6 +126,11 @@ const ArticleCard = ({
           )}
         </div>
       </div>
+  );
+
+  return (
+    <article className={`group cursor-pointer transition-all-smooth hover:shadow-lg bg-white border border-gray-100 rounded-lg overflow-hidden ${className}`}>
+      {id ? <Link href={`/article/${id}`} className="block">{content}</Link> : content}
     </article>
   );
 };
